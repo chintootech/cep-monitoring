@@ -16,13 +16,20 @@
  * limitations under the License.
  */
 
-package org.stsffap.cep.monitoring.events;
+package com.chintootech.flink.cep.monitoring.events;
 
-public abstract class MonitoringEvent {
+public class TemperatureWarning {
+
     private int rackID;
+    private double averageTemperature;
 
-    public MonitoringEvent(int rackID) {
+    public TemperatureWarning(int rackID, double averageTemperature) {
         this.rackID = rackID;
+        this.averageTemperature = averageTemperature;
+    }
+
+    public TemperatureWarning() {
+        this(-1, -1);
     }
 
     public int getRackID() {
@@ -33,11 +40,20 @@ public abstract class MonitoringEvent {
         this.rackID = rackID;
     }
 
+    public double getAverageTemperature() {
+        return averageTemperature;
+    }
+
+    public void setAverageTemperature(double averageTemperature) {
+        this.averageTemperature = averageTemperature;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof MonitoringEvent) {
-            MonitoringEvent monitoringEvent = (MonitoringEvent) obj;
-            return monitoringEvent.canEquals(this) && rackID == monitoringEvent.rackID;
+        if (obj instanceof TemperatureWarning) {
+            TemperatureWarning other = (TemperatureWarning) obj;
+
+            return rackID == other.rackID && averageTemperature == other.averageTemperature;
         } else {
             return false;
         }
@@ -45,10 +61,11 @@ public abstract class MonitoringEvent {
 
     @Override
     public int hashCode() {
-        return rackID;
+        return 41 * rackID + Double.hashCode(averageTemperature);
     }
 
-    public boolean canEquals(Object obj) {
-        return obj instanceof MonitoringEvent;
+    @Override
+    public String toString() {
+        return "TemperatureWarning(" + getRackID() + ", " + averageTemperature + ")";
     }
 }

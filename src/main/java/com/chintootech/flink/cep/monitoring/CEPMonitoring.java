@@ -16,11 +16,14 @@
  * limitations under the License.
  */
 
-package org.stsffap.cep.monitoring;
+package com.chintootech.flink.cep.monitoring;
 
+import com.chintootech.flink.cep.monitoring.events.MonitoringEvent;
+import com.chintootech.flink.cep.monitoring.events.TemperatureEvent;
+import com.chintootech.flink.cep.monitoring.events.TemperatureWarning;
+import com.chintootech.flink.cep.monitoring.sources.MonitoringEventSource;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.cep.CEP;
-import org.apache.flink.cep.PatternFlatSelectFunction;
 import org.apache.flink.cep.PatternStream;
 import org.apache.flink.cep.pattern.Pattern;
 import org.apache.flink.cep.pattern.conditions.IterativeCondition;
@@ -30,11 +33,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.IngestionTimeExtractor;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
-import org.stsffap.cep.monitoring.sources.MonitoringEventSource;
-import org.stsffap.cep.monitoring.events.MonitoringEvent;
-import org.stsffap.cep.monitoring.events.TemperatureEvent;
-import org.stsffap.cep.monitoring.events.TemperatureAlert;
-import org.stsffap.cep.monitoring.events.TemperatureWarning;
+import com.chintootech.flink.cep.monitoring.events.TemperatureAlert;
 
 import java.util.List;
 import java.util.Map;

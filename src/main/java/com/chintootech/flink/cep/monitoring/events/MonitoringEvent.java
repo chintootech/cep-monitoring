@@ -16,20 +16,12 @@
  * limitations under the License.
  */
 
-package org.stsffap.cep.monitoring.events;
+package com.chintootech.flink.cep.monitoring.events;
 
-public class TemperatureAlert {
+public abstract class MonitoringEvent {
     private int rackID;
 
-    public TemperatureAlert(int rackID) {
-        this.rackID = rackID;
-    }
-
-    public TemperatureAlert() {
-        this(-1);
-    }
-
-    public void setRackID(int rackID) {
+    public MonitoringEvent(int rackID) {
         this.rackID = rackID;
     }
 
@@ -37,11 +29,15 @@ public class TemperatureAlert {
         return rackID;
     }
 
+    public void setRackID(int rackID) {
+        this.rackID = rackID;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof TemperatureAlert) {
-            TemperatureAlert other = (TemperatureAlert) obj;
-            return rackID == other.rackID;
+        if (obj instanceof MonitoringEvent) {
+            MonitoringEvent monitoringEvent = (MonitoringEvent) obj;
+            return monitoringEvent.canEquals(this) && rackID == monitoringEvent.rackID;
         } else {
             return false;
         }
@@ -52,8 +48,7 @@ public class TemperatureAlert {
         return rackID;
     }
 
-    @Override
-    public String toString() {
-        return "TemperatureAlert(" + getRackID() + ")";
+    public boolean canEquals(Object obj) {
+        return obj instanceof MonitoringEvent;
     }
 }

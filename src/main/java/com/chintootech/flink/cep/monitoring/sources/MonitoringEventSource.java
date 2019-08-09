@@ -16,15 +16,14 @@
  * limitations under the License.
  */
 
-package org.stsffap.cep.monitoring.sources;
+package com.chintootech.flink.cep.monitoring.sources;
 
+import com.chintootech.flink.cep.monitoring.events.MonitoringEvent;
+import com.chintootech.flink.cep.monitoring.events.TemperatureEvent;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
-import org.stsffap.cep.monitoring.events.MonitoringEvent;
-import org.stsffap.cep.monitoring.events.PowerEvent;
-import org.stsffap.cep.monitoring.events.TemperatureEvent;
+import com.chintootech.flink.cep.monitoring.events.PowerEvent;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MonitoringEventSource extends RichParallelSourceFunction<MonitoringEvent> {

@@ -16,31 +16,30 @@
  * limitations under the License.
  */
 
-package org.stsffap.cep.monitoring.events;
+package com.chintootech.flink.cep.monitoring.events;
 
-public class TemperatureEvent extends MonitoringEvent {
-    private double temperature;
+public class PowerEvent extends MonitoringEvent {
+    private double voltage;
 
-    public TemperatureEvent(int rackID, double temperature) {
+    public PowerEvent(int rackID, double voltage) {
         super(rackID);
 
-        this.temperature = temperature;
+        this.voltage = voltage;
     }
 
-    public double getTemperature() {
-        return temperature;
+    public void setVoltage(double voltage) {
+        this.voltage = voltage;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public double getVoltage() {
+        return voltage;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof TemperatureEvent) {
-            TemperatureEvent other = (TemperatureEvent) obj;
-
-            return other.canEquals(this) && super.equals(other) && temperature == other.temperature;
+        if (obj instanceof PowerEvent) {
+            PowerEvent powerEvent = (PowerEvent) obj;
+            return powerEvent.canEquals(this) && super.equals(powerEvent) && voltage == powerEvent.voltage;
         } else {
             return false;
         }
@@ -48,16 +47,16 @@ public class TemperatureEvent extends MonitoringEvent {
 
     @Override
     public int hashCode() {
-        return 41 * super.hashCode() + Double.hashCode(temperature);
+        return 41 * super.hashCode() + Double.hashCode(voltage);
     }
 
     @Override
-    public boolean canEquals(Object obj){
-        return obj instanceof TemperatureEvent;
+    public boolean canEquals(Object obj) {
+        return obj instanceof PowerEvent;
     }
 
     @Override
     public String toString() {
-        return "TemperatureEvent(" + getRackID() + ", " + temperature + ")";
+        return "PowerEvent(" + getRackID() + ", " + voltage + ")";
     }
 }
