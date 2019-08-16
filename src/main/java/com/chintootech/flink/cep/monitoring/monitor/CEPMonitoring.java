@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.chintootech.flink.cep.monitoring;
+package com.chintootech.flink.cep.monitoring.monitor;
 
 import com.chintootech.flink.cep.monitoring.events.MonitoringEvent;
 import com.chintootech.flink.cep.monitoring.events.TemperatureEvent;
